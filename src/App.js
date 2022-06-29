@@ -16,11 +16,10 @@ function App() {
   }, []);
 
   const clickHandler = async () => {
-    console.log(events)
-    events.forEach(async(item) => {
-      console.log(item)
-    });
     
+    for (let i in events) {
+      console.log(`Event ${i}: `, events[i]);
+    }
   };
 
   return (
