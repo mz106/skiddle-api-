@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import { useEffect, useState } from 'react';
+
+import fetchEvents from './utils/functions';
+
 function App() {
+
+  const [events, setEvents] = useState();
+
+  useEffect(() => {
+    (async() => {
+      setEvents(await fetchEvents());
+    })();
+  }, []);
+
+  const clickHandler = async () => {
+    console.log(events)
+    events.forEach(async(item) => {
+      console.log(item)
+    });
+    
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 onClick={clickHandler}>click to log events</h1>
     </div>
   );
 }
